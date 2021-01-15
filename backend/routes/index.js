@@ -18,6 +18,11 @@ if (process.env.NODE_ENV === 'production') {
     res.cookie('XSRF-TOKEN', req.csrfToken());
     return res.sendFile(path.resolve(__dirname, '../../frontend', 'build', 'index.html'));
   });
-} else router.get('/api/csrf/restore', (req, res) => (res.cookie('XSRF-TOKEN', req.csrfToken()) || true) && res.json({}));
+} else {
+  router.get('/api/csrf/restore', (req, res) => {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.json({});
+  });
+}
 
 module.exports = router;

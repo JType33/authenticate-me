@@ -19,3 +19,5 @@ export default async function csrfetch (url, options = {}) {
 
   return res;
 }
+
+export const restore = () => csrfetch('/api/csrf/restore');

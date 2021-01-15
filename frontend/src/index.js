@@ -5,13 +5,16 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import configureStore from './store';
+import csrfetch, { restore } from './store/csrfetch';
 
 import './index.css';
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
+  restore();
   window.store = store;
+  window.csrfetch = csrfetch;
 }
 
 function Root () {
